@@ -7,11 +7,13 @@ import {
   FlatList,
   SectionList,
   TouchableOpacity,
+  Pressable,
   SafeAreaView,
 } from 'react-native';
 
 import { ThemeProvider, useTheme, withTheme, ThemeContext, setThemeContext } from './theme';
 import { makeTemplateFunction, useStyle } from './make-styles';
+import { useWindowDimensions } from './window-dimensions';
 import { useLengthAttribute, useColorAttribute } from './attribute-hooks';
 import {
   makePropsFilter,
@@ -56,6 +58,7 @@ styled.Image = styled(Image, makePropsFilter(imageProps, domProps));
 styled.ScrollView = styled(ScrollView, makePropsFilter(listProps, domProps));
 styled.FlatList = styled(FlatList, makePropsFilter(listProps, domProps));
 styled.SectionList = styled(SectionList, makePropsFilter(listProps, domProps));
+styled.Pressable = styled(Pressable, makePropsFilter(listProps, domProps));
 styled.TouchableOpacity = styled(TouchableOpacity, makePropsFilter(pressableProps, domProps));
 styled.TextInput = styled(TextInput, makePropsFilter(inputProps, viewProps, textProps, domProps));
 styled.SafeAreaView = styled(SafeAreaView, makePropsFilter(viewProps, domProps));
@@ -74,6 +77,7 @@ export const filterProps = makePropsFilter(
 
 export {
   ThemeProvider,
+  useWindowDimensions,
   useTheme,
   useStyle,
   withTheme,

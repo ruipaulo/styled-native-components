@@ -104,6 +104,7 @@ There are some hooks available:
 import {
   useStyle,
   useTheme,
+  useWindowDimensions,
   useLengthAttribute,
   useColorAttribute,
 } from 'styled-native-components';
@@ -113,10 +114,15 @@ const Component = ({ children, margin = '2rem 20px 1vh' }) => {
     color: $accent;
   `);
   const theme = useTheme();
+  const { width: windowWidth } = useWindowDimensions();
   const pixelMargins = useLengthAttribute(margin); // [2*theme.rem, 20, windowWidth/100, 20 ]
   const selectionColor = useColorAttribute('$selection');
   return (
-    <Text selectionColor={selectionColor} style={[style, { marginRight: theme.rem }]}>
+    <Text
+      selectionColor={selectionColor}
+      style={[style, { marginRight: theme.rem }]}
+      numberOfLines={windowWidth < 400 ? 2 : 1}
+    >
       {children}
     </Text>
   );
